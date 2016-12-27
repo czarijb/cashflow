@@ -1,4 +1,4 @@
-package ru.mail.czar_ijb;
+package com.github.czarijb;
 
 /**
  * Hello world!

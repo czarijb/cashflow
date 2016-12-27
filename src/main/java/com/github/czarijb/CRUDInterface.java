@@ -1,4 +1,4 @@
-package ru.mail.czar_ijb;
+package com.github.czarijb;
 
 /**
  * Не факт что я правильно поступил, но почему то мне показалось,

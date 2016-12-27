@@ -1,16 +1,16 @@
-package ru.mail.czar_ijb;
+package com.github.czarijb;
 
 /**
- * Поле пассивы
+ * Поле доходы
  */
-public class Liabilities extends StatementsField implements CRUDInterface {
+public class Income extends StatementsField implements CRUDInterface{
 
-    public Liabilities(String name, int price) {
+    public Income(String name, int price) {
         super(name, price);
     }
 
     public StatementsField createCategory(String name, int... param) {
-        return (new Liabilities(name, param[0]));
+       return (new Income(name, param[0]));
     }
 
     public void updateCategory(StatementsField o, int... param) {
