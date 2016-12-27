@@ -9,12 +9,12 @@ public class Income extends StatementsField implements CRUDInterface{
         super(name, price);
     }
 
-    public void createCategory(String name, int... param) {
-
+    public StatementsField createCategory(String name, int... param) {
+       return (new Income(name, param[0]));
     }
 
-    public void updateCategory(String name, int... param) {
-
+    public void updateCategory(StatementsField o, int... param) {
+        o.setPrice(param[0]);
     }
 
     public void deleteCategory(String name, int... param) {

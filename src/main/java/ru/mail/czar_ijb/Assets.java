@@ -7,17 +7,17 @@ public class Assets extends StatementsField implements CRUDInterface {
 
     private int volume;
 
-    public Assets(String name,int volume , int price){
+    public Assets(String name,int price , int volume){
         super(name, price);
         this.volume = volume;
     }
 
-    public void createCategory(String name, int... param) {
-
+    public StatementsField createCategory(String name, int... param) {
+        return (new Assets(name, param[0], param[1]));
     }
 
-    public void updateCategory(String name, int... param) {
-
+    public void updateCategory(StatementsField o, int... param) {
+        o.setPrice(param[0]);
     }
 
     public void deleteCategory(String name, int... param) {
