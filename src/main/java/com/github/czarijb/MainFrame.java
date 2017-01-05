@@ -23,7 +23,7 @@ public class MainFrame extends JFrame {
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(incomeTableScrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
-                GridBagConstraints.NORTHWEST, GridBagConstraints.VERTICAL,
+                GridBagConstraints.NORTHWEST, GridBagConstraints.BOTH,
                 new Insets(2, 2, 2, 2), 0, 0));
 
         AssetsTableModel assetsTableModel = new AssetsTableModel();
@@ -33,7 +33,7 @@ public class MainFrame extends JFrame {
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(assetsTableScrollPane, new GridBagConstraints(0, 400, 1, 1, 1, 1,
-                GridBagConstraints.WEST, GridBagConstraints.VERTICAL,
+                GridBagConstraints.WEST, GridBagConstraints.BOTH,
                 new Insets(2, 2, 2, 2), 0, 0));
 
         LiabilitiesTableModel liabilitiesTableModel = new LiabilitiesTableModel();
@@ -43,7 +43,7 @@ public class MainFrame extends JFrame {
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(liabilitiesTableScrollPane, new GridBagConstraints(200, 400, 1, 1, 1, 1,
-                GridBagConstraints.SOUTHWEST, GridBagConstraints.HORIZONTAL,
+                GridBagConstraints.SOUTHWEST, GridBagConstraints.BOTH,
                 new Insets(2, 2, 2, 2), 0, 0));
 
         ExpensesTableModel expensesTableModel = new ExpensesTableModel();
@@ -52,8 +52,8 @@ public class MainFrame extends JFrame {
         JScrollPane expensesTableScrollPane = new JScrollPane(expensesTable);
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
-        add(expensesTableScrollPane, new GridBagConstraints(200, 0, 1, 1, 1, 1,
-                GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
+        add(expensesTableScrollPane, new GridBagConstraints(0, 100, 1, 1, 1, 1,
+                GridBagConstraints.SOUTH, GridBagConstraints.BOTH,
                 new Insets(2, 2, 2, 2), 0, 0));
 
 
