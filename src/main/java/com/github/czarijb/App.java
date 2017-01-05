@@ -1,12 +1,17 @@
 package com.github.czarijb;
 
+
+import javax.swing.*;
+
 /**
  * Hello world!
  *
  */
-public class App 
-{
+public class App{
+
     public static void main( String[] args ) {
-        CRUDInterface crudInterface = new StatementsField("base", 12)
+
+        MainFrame mf = new MainFrame();
+        mf.repaint();
     }
 }
