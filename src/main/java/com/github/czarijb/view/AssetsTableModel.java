@@ -1,4 +1,7 @@
-package com.github.czarijb;
+package com.github.czarijb.view;
+
+import com.github.czarijb.model.Assets;
+import com.github.czarijb.model.StatementsField;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

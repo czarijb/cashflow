@@ -1,4 +1,4 @@
-package com.github.czarijb;
+package com.github.czarijb.model;
 
 /**
  * Поле доходы

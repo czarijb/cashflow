@@ -1,10 +1,10 @@
 package com.github.czarijb;
 
 
-import javax.swing.*;
+import com.github.czarijb.view.MainFrame;
 
 /**
- * Hello world!
+ *
  *
  */
 public class App{
@@ -12,6 +12,5 @@ public class App{
     public static void main( String[] args ) {
 
         MainFrame mf = new MainFrame();
-        mf.repaint();
     }
 }

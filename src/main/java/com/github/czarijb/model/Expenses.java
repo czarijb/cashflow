@@ -1,16 +1,17 @@
-package com.github.czarijb;
+package com.github.czarijb.model;
 
 /**
- * Поле пассивы
+ * Поле расходы
  */
-public class Liabilities extends StatementsField implements CRUDInterface {
 
-    public Liabilities(String name, int price) {
+public class Expenses extends StatementsField implements CRUDInterface {
+
+    public Expenses(String name, int price) {
         super(name, price);
     }
 
     public StatementsField createCategory(String name, int... param) {
-        return (new Liabilities(name, param[0]));
+        return (new Expenses(name, param[0]));
     }
 
     public void updateCategory(StatementsField o, int... param) {

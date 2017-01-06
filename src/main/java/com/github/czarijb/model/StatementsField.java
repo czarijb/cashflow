@@ -1,4 +1,4 @@
-package com.github.czarijb;
+package com.github.czarijb.model;
 /**
 *Родительский класс всех категорий всех полей
 */

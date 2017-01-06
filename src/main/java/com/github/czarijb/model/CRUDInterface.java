@@ -1,4 +1,4 @@
-package com.github.czarijb;
+package com.github.czarijb.model;
 
 /**
  * Не факт что я правильно поступил, но почему то мне показалось,
