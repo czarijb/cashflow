@@ -1,6 +1,7 @@
 package com.github.czarijb;
 
 
+import com.github.czarijb.view.EventWindow;
 import com.github.czarijb.view.MainFrame;
 
 /**

@@ -7,6 +7,8 @@ import com.github.czarijb.model.Liabilities;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -15,7 +17,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         setSize(800, 600);
         setResizable(false);
         setLocationRelativeTo(null);
@@ -85,7 +86,7 @@ public class MainFrame extends JFrame {
                 GridBagConstraints.SOUTHEAST, GridBagConstraints.HORIZONTAL,
                 new Insets(2, 1, 2, 2), 0, 0));
 
-
+        eventButton.addActionListener(e -> new EventWindow());
 
         setVisible(true);
         /**
