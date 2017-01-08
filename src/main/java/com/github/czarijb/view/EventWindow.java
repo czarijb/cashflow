@@ -83,9 +83,13 @@ public class EventWindow extends JFrame {
 
         incomeRadioButton.addActionListener(e  -> {
             if(incomeRadioButton.isSelected()) {
+                textFieldIncomeName.setText(null);
+                textFieldIncomePrice.setText(null);
                 textFieldIncomeName.setEditable(true);
                 textFieldIncomePrice.setEditable(true);
             }else {
+                textFieldIncomeName.setText("введите название источника дохода");
+                textFieldIncomePrice.setText("введите стоимость источника дохода");
                 textFieldIncomeName.setEditable(false);
                 textFieldIncomePrice.setEditable(false);
             }
@@ -126,9 +130,13 @@ public class EventWindow extends JFrame {
 
         expensesRadioButton.addActionListener(e  -> {
             if(expensesRadioButton.isSelected()) {
+                textFieldExpensesName.setText(null);
+                textFieldExpensesPrice.setText(null);
                 textFieldExpensesName.setEditable(true);
                 textFieldExpensesPrice.setEditable(true);
             }else {
+                textFieldExpensesName.setText("введите название источника расходов");
+                textFieldExpensesPrice.setText("введите стоимость источника расходов");
                 textFieldExpensesName.setEditable(false);
                 textFieldExpensesPrice.setEditable(false);
             }
@@ -180,10 +188,16 @@ public class EventWindow extends JFrame {
 
         assetsRadioButton.addActionListener(e  -> {
             if(assetsRadioButton.isSelected()) {
+                textFieldAssetsName.setText(null);
+                textFieldAssetsVolume.setText(null);
+                textFieldAssetsPrice.setText(null);
                 textFieldAssetsName.setEditable(true);
                 textFieldAssetsVolume.setEditable(true);
                 textFieldAssetsPrice.setEditable(true);
             }else {
+                textFieldAssetsName.setText("введите название актива");
+                textFieldAssetsVolume.setText("введите количество актива");
+                textFieldAssetsPrice.setText("введите стоимость актива");
                 textFieldAssetsName.setEditable(false);
                 textFieldAssetsVolume.setEditable(false);
                 textFieldAssetsPrice.setEditable(false);
@@ -225,9 +239,13 @@ public class EventWindow extends JFrame {
 
         liabilitiesRadioButton.addActionListener(e  -> {
             if(liabilitiesRadioButton.isSelected()) {
+                textFieldLiabilitiesName.setText(null);
+                textFieldLiabilitiesPrice.setText(null);
                 textFieldLiabilitiesName.setEditable(true);
                 textFieldLiabilitiesPrice.setEditable(true);
             }else {
+                textFieldLiabilitiesName.setText("введите название пассива");
+                textFieldLiabilitiesPrice.setText("введите стоимость пассива");
                 textFieldLiabilitiesName.setEditable(false);
                 textFieldLiabilitiesPrice.setEditable(false);
             }
