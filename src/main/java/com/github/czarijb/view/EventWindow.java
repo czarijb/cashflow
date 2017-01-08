@@ -1,8 +1,6 @@
 package com.github.czarijb.view;
 
-import com.github.czarijb.model.CRUDInterface;
-import com.github.czarijb.model.Income;
-import com.github.czarijb.model.StatementsField;
+import com.github.czarijb.model.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -45,7 +43,7 @@ public class EventWindow extends JFrame {
     public EventWindow(){
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(600, 400);
-        setResizable(false);
+        //setResizable(false);
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
 
@@ -248,14 +246,26 @@ public class EventWindow extends JFrame {
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(1, 1, 1, 1), 0, 0));
 
+        /** Если так обрабатывать событие то необходимо наследоваться от MainFrame, но тогда
+         * в этом окошке появляются таблички и кнопка создать, а как подругому засунуть объект в таблицу я не могу понять
         createButton.addActionListener(e -> {
             if(incomeRadioButton.isSelected()){
-                new Income(textFieldIncomeName.getText(), Integer.parseInt(textFieldIncomePrice.getText()));
-                /**
-                 * Нихрена я не понимаю как передать созданный объект в метод addIncomeData()
-                 */
-            }
-        });
+                incomeTableModel.addIncomeData(new Income(textFieldIncomeName.getText(),
+                        Integer.parseInt(textFieldIncomePrice.getText())));
+            }else if(expensesRadioButton.isSelected()){
+                    expensesTableModel.addExpensesDate(new Expenses(textFieldExpensesName.getText(),
+                            Integer.parseInt(textFieldExpensesPrice.getText())));
+            }else if(assetsRadioButton.isSelected()){
+                assetsTableModel.addAssetsDate(new Assets(textFieldAssetsName.getText(),
+                        Integer.parseInt(textFieldAssetsPrice.getText()),
+                                Integer.parseInt(textFieldAssetsVolume.getText())));
+            }else if(liabilitiesRadioButton.isSelected()) {
+                liabilitiesTableModel.addLiabilitiesDate(new Liabilities(textFieldLiabilitiesName.getText(),
+                        Integer.parseInt(textFieldLiabilitiesPrice.getText())));
+            }else
+                return;
+
+        });*/
 
         setVisible(true);
     }

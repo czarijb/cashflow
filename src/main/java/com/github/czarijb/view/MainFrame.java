@@ -13,19 +13,19 @@ import java.awt.*;
  */
 public class MainFrame extends JFrame {
 
-    private IncomeTableModel incomeTableModel;
+    IncomeTableModel incomeTableModel;
     private JTable incomeTable;
     private JScrollPane incomeTableScrollPane;
 
-    private ExpensesTableModel expensesTableModel;
+    ExpensesTableModel expensesTableModel;
     private JTable expensesTable;
     private JScrollPane expensesTableScrollPane;
 
-    private AssetsTableModel assetsTableModel;
+    AssetsTableModel assetsTableModel;
     private JTable assetsTable;
     private JScrollPane assetsTableScrollPane;
 
-    private LiabilitiesTableModel liabilitiesTableModel;
+    LiabilitiesTableModel liabilitiesTableModel;
     private JTable liabilitiesTable;
     private JScrollPane liabilitiesTableScrollPane;
 
