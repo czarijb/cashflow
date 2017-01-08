@@ -7,13 +7,29 @@ import com.github.czarijb.model.Liabilities;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  *
  */
 public class MainFrame extends JFrame {
+
+    private IncomeTableModel incomeTableModel;
+    private JTable incomeTable;
+    private JScrollPane incomeTableScrollPane;
+
+    private ExpensesTableModel expensesTableModel;
+    private JTable expensesTable;
+    private JScrollPane expensesTableScrollPane;
+
+    private AssetsTableModel assetsTableModel;
+    private JTable assetsTable;
+    private JScrollPane assetsTableScrollPane;
+
+    private LiabilitiesTableModel liabilitiesTableModel;
+    private JTable liabilitiesTable;
+    private JScrollPane liabilitiesTableScrollPane;
+
+    private JButton eventButton;
 
     public MainFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,10 +41,10 @@ public class MainFrame extends JFrame {
         /**
         * Таблица доходы, отражающая ежемесячную доходность по всем имеющимся активам
          */
-        IncomeTableModel incomeTableModel = new IncomeTableModel();
-        incomeTableModel.addIncomeDate(new Income("Доход", 200));
-        JTable incomeTable = new JTable(incomeTableModel);
-        JScrollPane incomeTableScrollPane = new JScrollPane(incomeTable);
+        incomeTableModel = new IncomeTableModel();
+        incomeTableModel.addIncomeData(new Income("Доход", 200));
+        incomeTable = new JTable(incomeTableModel);
+        incomeTableScrollPane = new JScrollPane(incomeTable);
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(incomeTableScrollPane, new GridBagConstraints(0, 0, 1, 1, 1, 1,
@@ -39,11 +55,11 @@ public class MainFrame extends JFrame {
          * Таблица расходы отражает ежемесячные бытовые и иные расходы
          */
 
-        ExpensesTableModel expensesTableModel = new ExpensesTableModel();
+        expensesTableModel = new ExpensesTableModel();
         expensesTableModel.addExpensesDate(new Expenses("Расходы", 200));
-        JTable expensesTable = new JTable(expensesTableModel);
-        JScrollPane expensesTableScrollPane = new JScrollPane(expensesTable);
-        incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
+        expensesTable = new JTable(expensesTableModel);
+        expensesTableScrollPane = new JScrollPane(expensesTable);
+        expensesTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(expensesTableScrollPane, new GridBagConstraints(0, 1, 1, 1, 1, 1,
                 GridBagConstraints.WEST, GridBagConstraints.BOTH,
@@ -53,11 +69,11 @@ public class MainFrame extends JFrame {
          * Таблица активы, отражающая все имущество по которому возможно получение доходов
          */
 
-        AssetsTableModel assetsTableModel = new AssetsTableModel();
+        assetsTableModel = new AssetsTableModel();
         assetsTableModel.addAssetsDate(new Assets("Активы", 1000, 200));
-        JTable assetsTable = new JTable(assetsTableModel);
-        JScrollPane assetsTableScrollPane = new JScrollPane(assetsTable);
-        incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
+        assetsTable = new JTable(assetsTableModel);
+        assetsTableScrollPane = new JScrollPane(assetsTable);
+        assetsTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(assetsTableScrollPane, new GridBagConstraints(0, 2, 1, 1, 1, 1,
                 GridBagConstraints.SOUTHWEST, GridBagConstraints.BOTH,
@@ -67,11 +83,11 @@ public class MainFrame extends JFrame {
          * Таблица пассивы отражает обязательства с отражением общих сумм которые необходимо погасить
          */
 
-        LiabilitiesTableModel liabilitiesTableModel = new LiabilitiesTableModel();
+        liabilitiesTableModel = new LiabilitiesTableModel();
         liabilitiesTableModel.addLiabilitiesDate(new Liabilities("Пассивы", 200));
-        JTable liabilitiesTable = new JTable(liabilitiesTableModel);
-        JScrollPane liabilitiesTableScrollPane = new JScrollPane(liabilitiesTable);
-        incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
+        liabilitiesTable = new JTable(liabilitiesTableModel);
+        liabilitiesTableScrollPane = new JScrollPane(liabilitiesTable);
+        liabilitiesTableScrollPane.setPreferredSize(new Dimension(265, 195));
 
         add(liabilitiesTableScrollPane, new GridBagConstraints(1, 2, 1, 1, 1, 1,
                 GridBagConstraints.SOUTHEAST, GridBagConstraints.BOTH,
@@ -81,7 +97,7 @@ public class MainFrame extends JFrame {
          * Кнопка создающая событие
          */
 
-        JButton eventButton = new JButton("Событие");
+        eventButton = new JButton("Событие");
         add(eventButton,new GridBagConstraints(1, 1, 1, 1, 0, 0,
                 GridBagConstraints.SOUTHEAST, GridBagConstraints.HORIZONTAL,
                 new Insets(2, 1, 2, 2), 0, 0));

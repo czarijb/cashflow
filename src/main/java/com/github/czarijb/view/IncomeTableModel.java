@@ -46,7 +46,7 @@ public class IncomeTableModel extends AbstractTableModel{
         return rows[columnIndex];
     }
     
-    public void addIncomeDate(StatementsField o){
+    public void addIncomeData(StatementsField o){
         String [] rowTable = new String[getColumnCount()];
         rowTable[0] = o.getName();
         rowTable[1] = String.valueOf(o.getPrice());
