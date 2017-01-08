@@ -102,7 +102,7 @@ public class MainFrame extends JFrame {
                 GridBagConstraints.SOUTHEAST, GridBagConstraints.HORIZONTAL,
                 new Insets(2, 1, 2, 2), 0, 0));
 
-        eventButton.addActionListener(e -> new EventWindow());
+        eventButton.addActionListener(e -> new EventWindow(incomeTableModel, expensesTableModel, assetsTableModel, liabilitiesTableModel));
 
         setVisible(true);
         /**

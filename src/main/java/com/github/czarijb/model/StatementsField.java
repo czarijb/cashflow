@@ -3,7 +3,7 @@ package com.github.czarijb.model;
 *Родительский класс всех категорий всех полей
 */
 
-public abstract class StatementsField{
+public abstract class StatementsField {
 
     private String name;
     private int price;

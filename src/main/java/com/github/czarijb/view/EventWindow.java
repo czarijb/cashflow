@@ -3,6 +3,7 @@ package com.github.czarijb.view;
 import com.github.czarijb.model.*;
 
 import javax.swing.*;
+import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 
 /**
@@ -40,7 +41,18 @@ public class EventWindow extends JFrame {
     private JButton updateButton;
     private JButton deleteButton;
 
-    public EventWindow(){
+    public void activateTextField(JRadioButton e, JTextField o, String a){
+        if(e.isSelected()){
+            o.setText(null);
+            o.setEditable(true);
+        }else{
+            o.setText(a);
+            o.setEditable(false);
+        }
+    }
+
+    public EventWindow(IncomeTableModel incomeTableModel, ExpensesTableModel expensesTableModel,
+                       AssetsTableModel assetsTableModel, LiabilitiesTableModel liabilitiesTableModel){
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(600, 400);
         //setResizable(false);
@@ -81,19 +93,11 @@ public class EventWindow extends JFrame {
         textFieldIncomeName.setEditable(false);
         textFieldIncomePrice.setEditable(false);
 
-        incomeRadioButton.addActionListener(e  -> {
-            if(incomeRadioButton.isSelected()) {
-                textFieldIncomeName.setText(null);
-                textFieldIncomePrice.setText(null);
-                textFieldIncomeName.setEditable(true);
-                textFieldIncomePrice.setEditable(true);
-            }else {
-                textFieldIncomeName.setText("введите название источника дохода");
-                textFieldIncomePrice.setText("введите стоимость источника дохода");
-                textFieldIncomeName.setEditable(false);
-                textFieldIncomePrice.setEditable(false);
-            }
-        });
+
+        incomeRadioButton.addActionListener(e ->
+                activateTextField(incomeRadioButton, textFieldIncomeName, "введите название источника дохода"));
+        incomeRadioButton.addActionListener(e ->
+                activateTextField(incomeRadioButton, textFieldIncomePrice, "введите стоимость источника дохода"));
 
         /**
          * Активация и добавление элемента поля "Расходы" по нажатию на кнопку событие
@@ -128,19 +132,10 @@ public class EventWindow extends JFrame {
         textFieldExpensesName.setEditable(false);
         textFieldExpensesPrice.setEditable(false);
 
-        expensesRadioButton.addActionListener(e  -> {
-            if(expensesRadioButton.isSelected()) {
-                textFieldExpensesName.setText(null);
-                textFieldExpensesPrice.setText(null);
-                textFieldExpensesName.setEditable(true);
-                textFieldExpensesPrice.setEditable(true);
-            }else {
-                textFieldExpensesName.setText("введите название источника расходов");
-                textFieldExpensesPrice.setText("введите стоимость источника расходов");
-                textFieldExpensesName.setEditable(false);
-                textFieldExpensesPrice.setEditable(false);
-            }
-        });
+        expensesRadioButton.addActionListener(e  ->
+                activateTextField(expensesRadioButton, textFieldExpensesName, "введите название источника расходов"));
+        expensesRadioButton.addActionListener(e  ->
+                        activateTextField(expensesRadioButton, textFieldExpensesPrice, "введите стоимость источника расходов"));
 
         /**
          * Активация и добавление элемента поля "Активы" по нажатию на кнопку событие
@@ -186,23 +181,13 @@ public class EventWindow extends JFrame {
         textFieldAssetsVolume.setEditable(false);
         textFieldAssetsPrice.setEditable(false);
 
-        assetsRadioButton.addActionListener(e  -> {
-            if(assetsRadioButton.isSelected()) {
-                textFieldAssetsName.setText(null);
-                textFieldAssetsVolume.setText(null);
-                textFieldAssetsPrice.setText(null);
-                textFieldAssetsName.setEditable(true);
-                textFieldAssetsVolume.setEditable(true);
-                textFieldAssetsPrice.setEditable(true);
-            }else {
-                textFieldAssetsName.setText("введите название актива");
-                textFieldAssetsVolume.setText("введите количество актива");
-                textFieldAssetsPrice.setText("введите стоимость актива");
-                textFieldAssetsName.setEditable(false);
-                textFieldAssetsVolume.setEditable(false);
-                textFieldAssetsPrice.setEditable(false);
-            }
-        });
+        assetsRadioButton.addActionListener(e  ->
+                activateTextField(assetsRadioButton, textFieldAssetsName, "введите название актива"));
+        assetsRadioButton.addActionListener(e  ->
+                activateTextField(assetsRadioButton, textFieldAssetsPrice, "введите стоимость актива"));
+        assetsRadioButton.addActionListener(e  ->
+                activateTextField(assetsRadioButton, textFieldAssetsVolume, "введите количество актива"));
+
 
         /**
          * Активация и добавление элемента поля "Пассивы" по нажатию на кнопку событие
@@ -237,19 +222,10 @@ public class EventWindow extends JFrame {
         textFieldLiabilitiesName.setEditable(false);
         textFieldLiabilitiesPrice.setEditable(false);
 
-        liabilitiesRadioButton.addActionListener(e  -> {
-            if(liabilitiesRadioButton.isSelected()) {
-                textFieldLiabilitiesName.setText(null);
-                textFieldLiabilitiesPrice.setText(null);
-                textFieldLiabilitiesName.setEditable(true);
-                textFieldLiabilitiesPrice.setEditable(true);
-            }else {
-                textFieldLiabilitiesName.setText("введите название пассива");
-                textFieldLiabilitiesPrice.setText("введите стоимость пассива");
-                textFieldLiabilitiesName.setEditable(false);
-                textFieldLiabilitiesPrice.setEditable(false);
-            }
-        });
+        liabilitiesRadioButton.addActionListener(e  ->
+                activateTextField(liabilitiesRadioButton, textFieldLiabilitiesName, "введите название пассива"));
+        liabilitiesRadioButton.addActionListener(e  ->
+                activateTextField(liabilitiesRadioButton, textFieldLiabilitiesPrice, "введите стоимость пассива"));
 
         createButton = new JButton("Добавить");
         updateButton = new JButton("Обновить");
@@ -264,27 +240,33 @@ public class EventWindow extends JFrame {
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(1, 1, 1, 1), 0, 0));
 
-        /** Если так обрабатывать событие то необходимо наследоваться от MainFrame, но тогда
-         * в этом окошке появляются таблички и кнопка создать, а как подругому засунуть объект в таблицу я не могу понять
         createButton.addActionListener(e -> {
             if(incomeRadioButton.isSelected()){
                 incomeTableModel.addIncomeData(new Income(textFieldIncomeName.getText(),
                         Integer.parseInt(textFieldIncomePrice.getText())));
-            }else if(expensesRadioButton.isSelected()){
-                    expensesTableModel.addExpensesDate(new Expenses(textFieldExpensesName.getText(),
+                incomeTableModel.fireTableDataChanged();
+            }
+            if(expensesRadioButton.isSelected()){
+                expensesTableModel.addExpensesDate(new Expenses(textFieldExpensesName.getText(),
                             Integer.parseInt(textFieldExpensesPrice.getText())));
-            }else if(assetsRadioButton.isSelected()){
+                expensesTableModel.fireTableDataChanged();
+            }
+            if(assetsRadioButton.isSelected()){
                 assetsTableModel.addAssetsDate(new Assets(textFieldAssetsName.getText(),
                         Integer.parseInt(textFieldAssetsPrice.getText()),
                                 Integer.parseInt(textFieldAssetsVolume.getText())));
-            }else if(liabilitiesRadioButton.isSelected()) {
+                assetsTableModel.fireTableDataChanged();
+            }
+            if(liabilitiesRadioButton.isSelected()) {
                 liabilitiesTableModel.addLiabilitiesDate(new Liabilities(textFieldLiabilitiesName.getText(),
                         Integer.parseInt(textFieldLiabilitiesPrice.getText())));
-            }else
-                return;
+                liabilitiesTableModel.fireTableDataChanged();
+            }
 
-        });*/
+        });
 
         setVisible(true);
     }
+
+
 }
