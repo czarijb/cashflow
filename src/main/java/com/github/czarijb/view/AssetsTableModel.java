@@ -1,7 +1,6 @@
 package com.github.czarijb.view;
-
 import com.github.czarijb.model.Assets;
-import com.github.czarijb.model.StatementsField;
+import com.github.czarijb.model.StatementField;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.List;
  * Created by aleksandr on 05.01.17.
  */
 public class AssetsTableModel extends AbstractTableModel{
+    private static final long serialVersionUID = -5223870687544265774L;
     private int columnCount = 3;
     private List<String []> assetsDataArrayList;
 
@@ -46,13 +46,18 @@ public class AssetsTableModel extends AbstractTableModel{
         return rows[columnIndex];
     }
 
-    public void addAssetsDate (StatementsField o){
+    public void addAssetsData(StatementField o){
         String [] rowTable = new String[getColumnCount()];
         rowTable[0] = o.getName();
         rowTable[1] = String.valueOf(((Assets) o).getVolume());
         rowTable[2] = String.valueOf(o.getPrice());
         assetsDataArrayList.add(rowTable);
+    }
 
-
+    public void addAllAssets(List<Assets> list){
+        assetsDataArrayList.clear();
+        for (Assets assets : list){
+            addAssetsData(assets);
+        }
     }
 }

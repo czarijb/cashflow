@@ -1,27 +1,29 @@
 package com.github.czarijb.model;
 
-/**
- * Поле активы
- */
-public class Assets extends StatementsField implements CRUDInterface {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+/**
+ * Сущность активы
+ */
+@Entity
+@Table(name = "ASSETS")
+public class Assets extends StatementField {
+    private static final long serialVersionUID = 3614550698683427050L;
+
+    @Column(name = "volume")
     private int volume;
 
-    public Assets(String name,int price , int volume){
+    public Assets() {}
+
+    public Assets(long id) {
+        super(id);
+    }
+
+    public Assets(String name, int volume, int price){
         super(name, price);
         this.volume = volume;
-    }
-
-    public StatementsField createCategory(String name, int... param) {
-        return (new Assets(name, param[0], param[1]));
-    }
-
-    public void updateCategory(StatementsField o, int... param) {
-        o.setPrice(param[0]);
-    }
-
-    public void deleteCategory(String name, int... param) {
-
     }
 
     public int getVolume() {

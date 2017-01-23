@@ -1,6 +1,7 @@
 package com.github.czarijb.view;
 
-import com.github.czarijb.model.StatementsField;
+import com.github.czarijb.model.Income;
+import com.github.czarijb.model.StatementField;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 public class IncomeTableModel extends AbstractTableModel{
 
+    private static final long serialVersionUID = 4083008991781196863L;
     private int columnCount = 2;
     private List<String []> incomeDataArrayList;
 
@@ -45,13 +47,18 @@ public class IncomeTableModel extends AbstractTableModel{
         String [] rows = incomeDataArrayList.get(rowIndex);
         return rows[columnIndex];
     }
-    
-    public void addIncomeData(StatementsField o){
+
+    public void addIncomeData(StatementField o){
         String [] rowTable = new String[getColumnCount()];
         rowTable[0] = o.getName();
         rowTable[1] = String.valueOf(o.getPrice());
         incomeDataArrayList.add(rowTable);
+    }
 
-
+    public void addAllIncome(List<Income> list){
+        incomeDataArrayList.clear();
+        for (Income income : list){
+            addIncomeData(income);
+        }
     }
 }

@@ -1,23 +1,22 @@
 package com.github.czarijb.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
- * Поле пассивы
+ * Сущность пассивы
  */
-public class Liabilities extends StatementsField implements CRUDInterface {
+@Entity
+@Table(name = "LIABILITIES")
+public class Liabilities extends StatementField {
+    private static final long serialVersionUID = -26531392757460281L;
 
-    public Liabilities(String name, int price) {
-        super(name, price);
+    public Liabilities() {
     }
 
-    public StatementsField createCategory(String name, int... param) {
-        return (new Liabilities(name, param[0]));
+    public Liabilities(long id) {
+        super(id);
     }
 
-    public void updateCategory(StatementsField o, int... param) {
-        o.setPrice(param[0]);
-    }
-
-    public void deleteCategory(String name, int... param) {
-
-    }
+    public Liabilities(String name, int price){super(name, price);}
 }

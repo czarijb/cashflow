@@ -1,16 +1,24 @@
 package com.github.czarijb.view;
 
+
+import com.github.czarijb.daoImpl.AssetsDAOImpl;
+import com.github.czarijb.daoImpl.ExpensesDAOImpl;
+import com.github.czarijb.daoImpl.IncomeDAOImpl;
+import com.github.czarijb.daoImpl.LiabilitiesDAOImpl;
+import com.github.czarijb.hibernateUtils.Factory;
 import com.github.czarijb.model.*;
 
 import javax.swing.*;
-import javax.swing.table.AbstractTableModel;
 import java.awt.*;
 
+
 /**
- * Created by aleksandr on 06.01.17.
+ * Окно отвечающее за реализацию событий, т.е. Добавление удаление и обновление элементов таблиц.
  */
+
 public class EventWindow extends JFrame {
 
+    private static final long serialVersionUID = -3721026767488440179L;
     private JRadioButton incomeRadioButton;
     private JLabel labelIncomeName;
     private JTextField textFieldIncomeName;
@@ -41,21 +49,11 @@ public class EventWindow extends JFrame {
     private JButton updateButton;
     private JButton deleteButton;
 
-    public void activateTextField(JRadioButton e, JTextField o, String a){
-        if(e.isSelected()){
-            o.setText(null);
-            o.setEditable(true);
-        }else{
-            o.setText(a);
-            o.setEditable(false);
-        }
-    }
-
-    public EventWindow(IncomeTableModel incomeTableModel, ExpensesTableModel expensesTableModel,
-                       AssetsTableModel assetsTableModel, LiabilitiesTableModel liabilitiesTableModel){
+    public EventWindow(AssetsTableModel assetsTableModel, ExpensesTableModel expensesTableModel,
+                       IncomeTableModel incomeTableModel, LiabilitiesTableModel liabilitiesTableModel){
         setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         setSize(600, 400);
-        //setResizable(false);
+        setResizable(false);
         setLocationRelativeTo(null);
         setLayout(new GridBagLayout());
 
@@ -93,11 +91,19 @@ public class EventWindow extends JFrame {
         textFieldIncomeName.setEditable(false);
         textFieldIncomePrice.setEditable(false);
 
-
-        incomeRadioButton.addActionListener(e ->
-                activateTextField(incomeRadioButton, textFieldIncomeName, "введите название источника дохода"));
-        incomeRadioButton.addActionListener(e ->
-                activateTextField(incomeRadioButton, textFieldIncomePrice, "введите стоимость источника дохода"));
+        incomeRadioButton.addActionListener(e  -> {
+            if(incomeRadioButton.isSelected()) {
+                textFieldIncomeName.setText(null);
+                textFieldIncomePrice.setText(null);
+                textFieldIncomeName.setEditable(true);
+                textFieldIncomePrice.setEditable(true);
+            }else {
+                textFieldIncomeName.setText("введите название источника дохода");
+                textFieldIncomePrice.setText("введите стоимость источника дохода");
+                textFieldIncomeName.setEditable(false);
+                textFieldIncomePrice.setEditable(false);
+            }
+        });
 
         /**
          * Активация и добавление элемента поля "Расходы" по нажатию на кнопку событие
@@ -132,10 +138,19 @@ public class EventWindow extends JFrame {
         textFieldExpensesName.setEditable(false);
         textFieldExpensesPrice.setEditable(false);
 
-        expensesRadioButton.addActionListener(e  ->
-                activateTextField(expensesRadioButton, textFieldExpensesName, "введите название источника расходов"));
-        expensesRadioButton.addActionListener(e  ->
-                        activateTextField(expensesRadioButton, textFieldExpensesPrice, "введите стоимость источника расходов"));
+        expensesRadioButton.addActionListener(e  -> {
+            if(expensesRadioButton.isSelected()) {
+                textFieldExpensesName.setText(null);
+                textFieldExpensesPrice.setText(null);
+                textFieldExpensesName.setEditable(true);
+                textFieldExpensesPrice.setEditable(true);
+            }else {
+                textFieldExpensesName.setText("введите название источника расходов");
+                textFieldExpensesPrice.setText("введите стоимость источника расходов");
+                textFieldExpensesName.setEditable(false);
+                textFieldExpensesPrice.setEditable(false);
+            }
+        });
 
         /**
          * Активация и добавление элемента поля "Активы" по нажатию на кнопку событие
@@ -181,13 +196,23 @@ public class EventWindow extends JFrame {
         textFieldAssetsVolume.setEditable(false);
         textFieldAssetsPrice.setEditable(false);
 
-        assetsRadioButton.addActionListener(e  ->
-                activateTextField(assetsRadioButton, textFieldAssetsName, "введите название актива"));
-        assetsRadioButton.addActionListener(e  ->
-                activateTextField(assetsRadioButton, textFieldAssetsPrice, "введите стоимость актива"));
-        assetsRadioButton.addActionListener(e  ->
-                activateTextField(assetsRadioButton, textFieldAssetsVolume, "введите количество актива"));
-
+        assetsRadioButton.addActionListener(e  -> {
+            if(assetsRadioButton.isSelected()) {
+                textFieldAssetsName.setText(null);
+                textFieldAssetsVolume.setText(null);
+                textFieldAssetsPrice.setText(null);
+                textFieldAssetsName.setEditable(true);
+                textFieldAssetsVolume.setEditable(true);
+                textFieldAssetsPrice.setEditable(true);
+            }else {
+                textFieldAssetsName.setText("введите название актива");
+                textFieldAssetsVolume.setText("введите количество актива");
+                textFieldAssetsPrice.setText("введите стоимость актива");
+                textFieldAssetsName.setEditable(false);
+                textFieldAssetsVolume.setEditable(false);
+                textFieldAssetsPrice.setEditable(false);
+            }
+        });
 
         /**
          * Активация и добавление элемента поля "Пассивы" по нажатию на кнопку событие
@@ -222,10 +247,19 @@ public class EventWindow extends JFrame {
         textFieldLiabilitiesName.setEditable(false);
         textFieldLiabilitiesPrice.setEditable(false);
 
-        liabilitiesRadioButton.addActionListener(e  ->
-                activateTextField(liabilitiesRadioButton, textFieldLiabilitiesName, "введите название пассива"));
-        liabilitiesRadioButton.addActionListener(e  ->
-                activateTextField(liabilitiesRadioButton, textFieldLiabilitiesPrice, "введите стоимость пассива"));
+        liabilitiesRadioButton.addActionListener(e  -> {
+            if(liabilitiesRadioButton.isSelected()) {
+                textFieldLiabilitiesName.setText(null);
+                textFieldLiabilitiesPrice.setText(null);
+                textFieldLiabilitiesName.setEditable(true);
+                textFieldLiabilitiesPrice.setEditable(true);
+            }else {
+                textFieldLiabilitiesName.setText("введите название пассива");
+                textFieldLiabilitiesPrice.setText("введите стоимость пассива");
+                textFieldLiabilitiesName.setEditable(false);
+                textFieldLiabilitiesPrice.setEditable(false);
+            }
+        });
 
         createButton = new JButton("Добавить");
         updateButton = new JButton("Обновить");
@@ -240,33 +274,146 @@ public class EventWindow extends JFrame {
                 GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL,
                 new Insets(1, 1, 1, 1), 0, 0));
 
+        /**
+         * Действие кнопки "Добавить"
+         */
         createButton.addActionListener(e -> {
-            if(incomeRadioButton.isSelected()){
-                incomeTableModel.addIncomeData(new Income(textFieldIncomeName.getText(),
-                        Integer.parseInt(textFieldIncomePrice.getText())));
-                incomeTableModel.fireTableDataChanged();
-            }
-            if(expensesRadioButton.isSelected()){
-                expensesTableModel.addExpensesDate(new Expenses(textFieldExpensesName.getText(),
-                            Integer.parseInt(textFieldExpensesPrice.getText())));
-                expensesTableModel.fireTableDataChanged();
-            }
             if(assetsRadioButton.isSelected()){
-                assetsTableModel.addAssetsDate(new Assets(textFieldAssetsName.getText(),
+                AssetsDAOImpl assetsDAO = Factory.getInstance().getAssetsDao();
+                assetsDAO.addAssets(new Assets(textFieldAssetsName.getText(),
                         Integer.parseInt(textFieldAssetsPrice.getText()),
-                                Integer.parseInt(textFieldAssetsVolume.getText())));
+                        Integer.parseInt(textFieldAssetsVolume.getText())));
+                assetsTableModel.addAllAssets(assetsDAO.getAllAssets());
                 assetsTableModel.fireTableDataChanged();
             }
+            if(expensesRadioButton.isSelected()){
+                ExpensesDAOImpl expensesDAO = Factory.getInstance().getExpensesDao();
+                expensesDAO.addExpenses(new Expenses(textFieldExpensesName.getText(),
+                        Integer.parseInt(textFieldExpensesPrice.getText())));
+                expensesTableModel.addAllExpenses(expensesDAO.getAllExpenses());
+                expensesTableModel.fireTableDataChanged();
+            }
+            if(incomeRadioButton.isSelected()){
+                IncomeDAOImpl incomeDAO = Factory.getInstance().getIncomeDao();
+                incomeDAO.addIncome(new Income(textFieldIncomeName.getText(),
+                        Integer.parseInt(textFieldIncomePrice.getText())));
+                incomeTableModel.addAllIncome(incomeDAO.getAllIncome());
+                incomeTableModel.fireTableDataChanged();
+            }
             if(liabilitiesRadioButton.isSelected()) {
-                liabilitiesTableModel.addLiabilitiesDate(new Liabilities(textFieldLiabilitiesName.getText(),
+                LiabilitiesDAOImpl liabilitiesDAO = Factory.getInstance().getLiabilitiesDao();
+                liabilitiesDAO.addLiabilities(new Liabilities(textFieldLiabilitiesName.getText(),
                         Integer.parseInt(textFieldLiabilitiesPrice.getText())));
+                liabilitiesTableModel.addAllLiabilities(liabilitiesDAO.getAllLiabilities());
                 liabilitiesTableModel.fireTableDataChanged();
             }
+            setVisible(false);
+        });
 
+        /**
+         * Действие кнопки "Обновить"
+         */
+        updateButton.addActionListener(e -> {
+            if(assetsRadioButton.isSelected()){
+                AssetsDAOImpl assetsDAO = Factory.getInstance().getAssetsDao();
+                for (Assets assets : assetsDAO.getAllAssets()){
+                    if (assets.getName().equals(textFieldAssetsName.getText())){
+                        assetsDAO.deleteAssets(assets);
+                        assetsDAO.addAssets(new Assets(textFieldAssetsName.getText(),
+                                Integer.parseInt(textFieldAssetsPrice.getText()),
+                                Integer.parseInt(textFieldAssetsVolume.getText())));
+                    }
+                }
+                assetsTableModel.addAllAssets(assetsDAO.getAllAssets());
+                assetsTableModel.fireTableDataChanged();
+            }
+            if(expensesRadioButton.isSelected()){
+                ExpensesDAOImpl expensesDAO = Factory.getInstance().getExpensesDao();
+                for (Expenses expenses : expensesDAO.getAllExpenses()){
+                    if (expenses.getName().equals(textFieldExpensesName.getText())){
+                        expensesDAO.deleteExpenses(expenses);
+                        expensesDAO.addExpenses(new Expenses(textFieldExpensesName.getText(),
+                                Integer.parseInt(textFieldExpensesPrice.getText())));
+                    }
+                }
+                expensesTableModel.addAllExpenses(expensesDAO.getAllExpenses());
+                expensesTableModel.fireTableDataChanged();
+            }
+            if(incomeRadioButton.isSelected()){
+                IncomeDAOImpl incomeDAO = Factory.getInstance().getIncomeDao();
+                for (Income income : incomeDAO.getAllIncome()){
+                    if (income.getName().equals(textFieldIncomeName.getText())){
+                        incomeDAO.deleteIncome(income);
+                        incomeDAO.addIncome(new Income(textFieldIncomeName.getText(),
+                                Integer.parseInt(textFieldIncomePrice.getText())));
+                    }
+                }
+                incomeTableModel.addAllIncome(incomeDAO.getAllIncome());
+                incomeTableModel.fireTableDataChanged();
+            }
+            if(liabilitiesRadioButton.isSelected()) {
+                LiabilitiesDAOImpl liabilitiesDAO = Factory.getInstance().getLiabilitiesDao();
+                for (Liabilities liabilities : liabilitiesDAO.getAllLiabilities()){
+                    if (liabilities.getName().equals(textFieldLiabilitiesName.getText())){
+                        liabilitiesDAO.deleteLiabilities(liabilities);
+                        liabilitiesDAO.addLiabilities(new Liabilities(textFieldLiabilitiesName.getText(),
+                                Integer.parseInt(textFieldLiabilitiesPrice.getText())));
+                    }
+                }
+                liabilitiesTableModel.addAllLiabilities(liabilitiesDAO.getAllLiabilities());
+                liabilitiesTableModel.fireTableDataChanged();
+            }
+            setVisible(false);
+        });
+
+        /**
+         * Действие кнопки "Удалить"
+         */
+        deleteButton.addActionListener(e -> {
+            if (assetsRadioButton.isSelected()) {
+                AssetsDAOImpl assetsDAO = Factory.getInstance().getAssetsDao();
+                for (Assets assets : assetsDAO.getAllAssets()) {
+                    if (assets.getName().equals(textFieldAssetsName.getText())) {
+                        assetsDAO.deleteAssets(assets);
+                    }
+                }
+                assetsTableModel.addAllAssets(assetsDAO.getAllAssets());
+                assetsTableModel.fireTableDataChanged();
+            }
+            if(expensesRadioButton.isSelected()){
+                ExpensesDAOImpl expensesDAO = Factory.getInstance().getExpensesDao();
+                for (Expenses expenses : expensesDAO.getAllExpenses()){
+                    if (expenses.getName().equals(textFieldExpensesName.getText())){
+                        expensesDAO.deleteExpenses(expenses);
+                    }
+                }
+                expensesTableModel.addAllExpenses(expensesDAO.getAllExpenses());
+                expensesTableModel.fireTableDataChanged();
+            }
+            if(incomeRadioButton.isSelected()){
+                IncomeDAOImpl incomeDAO = Factory.getInstance().getIncomeDao();
+                for (Income income : incomeDAO.getAllIncome()){
+                    if (income.getName().equals(textFieldIncomeName.getText())){
+                        incomeDAO.deleteIncome(income);
+                    }
+                }
+                incomeTableModel.addAllIncome(incomeDAO.getAllIncome());
+                incomeTableModel.fireTableDataChanged();
+            }
+            if(liabilitiesRadioButton.isSelected()) {
+                LiabilitiesDAOImpl liabilitiesDAO = Factory.getInstance().getLiabilitiesDao();
+                for (Liabilities liabilities : liabilitiesDAO.getAllLiabilities()){
+                    if (liabilities.getName().equals(textFieldLiabilitiesName.getText())){
+                        liabilitiesDAO.deleteLiabilities(liabilities);
+                    }
+                }
+                liabilitiesTableModel.addAllLiabilities(liabilitiesDAO.getAllLiabilities());
+                liabilitiesTableModel.fireTableDataChanged();
+            }
+            setVisible(false);
         });
 
         setVisible(true);
     }
-
-
 }
+

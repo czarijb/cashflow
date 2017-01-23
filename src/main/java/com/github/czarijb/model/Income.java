@@ -1,26 +1,22 @@
 package com.github.czarijb.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
- * Поле доходы
+ * Сущность доходы
  */
-public class Income extends StatementsField implements CRUDInterface{
+@Entity
+@Table(name = "INCOME")
+public class Income extends StatementField {
+    private static final long serialVersionUID = -8782567156165396920L;
 
-    public Income(String name, int price) {
-        super(name, price);
+    public Income() {
     }
 
-    public StatementsField createCategory(String name, int... param) {
-       return (new Income(name, param[0]));
+    public Income(long id) {
+        super(id);
     }
 
-    public void updateCategory(StatementsField o, int... param) {
-        o.setPrice(param[0]);
-    }
-
-    public void deleteCategory(String name, int... param) {
-
-    }
-
-
-
+    public Income(String name, int price){super(name, price);}
 }
