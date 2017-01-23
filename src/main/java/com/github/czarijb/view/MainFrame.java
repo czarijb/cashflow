@@ -30,15 +30,15 @@ public class MainFrame extends JFrame {
     private List<Expenses> expensesList = expensesDAO.getAllExpenses();
     private JTable expensesTable;
     private JScrollPane expensesTableScrollPane;
-    private Expenses expensesSummary;
+    /*private Expenses expensesSummary;*/
 
     IncomeTableModel incomeTableModel;
     IncomeDAOImpl incomeDAO = factory.getIncomeDao();
     private List<Income> incomeList;
     private JTable incomeTable;
     private JScrollPane incomeTableScrollPane;
-    private Income incomeSummary = new Income();
-    private Income incomeCashFlow = new Income();
+    /*private Income incomeSummary = new Income();
+    private Income incomeCashFlow = new Income();*/
 
     LiabilitiesTableModel liabilitiesTableModel;
     LiabilitiesDAOImpl liabilitiesDAO = factory.getLiabilitiesDao();
@@ -48,13 +48,13 @@ public class MainFrame extends JFrame {
 
     private JButton eventButton;
 
-    private int getSumAllFields(List<StatementField> list){
+   /* private int getSumAllFields(List<? extends StatementField> list){
         int a = 0;
         for (int i = 0; i < list.size(); i++){
             a += list.get(i).getPrice();
         }
         return a;
-    }
+    }*/
 
     public MainFrame(){
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,7 +85,7 @@ public class MainFrame extends JFrame {
         expensesTableModel = new ExpensesTableModel();
         expensesList = expensesDAO.getAllExpenses();
         expensesTableModel.addAllExpenses(expensesList);
-        //expensesSummary = new Expenses("Итого расходы", getSumAllFields(expensesList));
+        /*expensesSummary = new Expenses("Итого расходы", getSumAllFields(expensesList));*/
         expensesTable = new JTable(expensesTableModel);
         expensesTableScrollPane = new JScrollPane(expensesTable);
         expensesTableScrollPane.setPreferredSize(new Dimension(265, 195));
@@ -100,8 +100,8 @@ public class MainFrame extends JFrame {
         incomeTableModel = new IncomeTableModel();
         incomeList = incomeDAO.getAllIncome();
         incomeTableModel.addAllIncome(incomeList);
-        //incomeSummary = new Income("Итого доходы", getSumAllFields(incomeList));
-        //incomeCashFlow = new Income("Денежный поток", getSumAllFields(incomeList) - getSumAllFields(expensesList));
+        /*incomeSummary = new Income("Итого доходы", getSumAllFields(incomeList));
+        incomeCashFlow = new Income("Денежный поток", getSumAllFields(incomeList) - getSumAllFields(expensesList));*/
         incomeTable = new JTable(incomeTableModel);
         incomeTableScrollPane = new JScrollPane(incomeTable);
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
