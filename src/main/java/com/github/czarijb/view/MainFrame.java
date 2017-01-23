@@ -85,7 +85,7 @@ public class MainFrame extends JFrame {
         expensesTableModel = new ExpensesTableModel();
         expensesList = expensesDAO.getAllExpenses();
         expensesTableModel.addAllExpenses(expensesList);
-        expensesSummary = new Expenses("Итого расходы", getSumAllFields(expensesList));
+        //expensesSummary = new Expenses("Итого расходы", getSumAllFields(expensesList));
         expensesTable = new JTable(expensesTableModel);
         expensesTableScrollPane = new JScrollPane(expensesTable);
         expensesTableScrollPane.setPreferredSize(new Dimension(265, 195));
@@ -100,8 +100,8 @@ public class MainFrame extends JFrame {
         incomeTableModel = new IncomeTableModel();
         incomeList = incomeDAO.getAllIncome();
         incomeTableModel.addAllIncome(incomeList);
-        incomeSummary = new Income("Итого доходы", getSumAllFields(incomeList));
-        incomeCashFlow = new Income("Денежный поток", getSumAllFields(incomeList) - getSumAllFields(expensesList));
+        //incomeSummary = new Income("Итого доходы", getSumAllFields(incomeList));
+        //incomeCashFlow = new Income("Денежный поток", getSumAllFields(incomeList) - getSumAllFields(expensesList));
         incomeTable = new JTable(incomeTableModel);
         incomeTableScrollPane = new JScrollPane(incomeTable);
         incomeTableScrollPane.setPreferredSize(new Dimension(265, 195));
